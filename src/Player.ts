@@ -94,7 +94,7 @@ module Tsukthemall{
             }
             
             this.isAtacking = true;
-            this.dogatack.play('', 0, 0.4, false);
+            this.dogatack.play('', 0, 0.7, false);
             this.laserAudio.play('', 0, 0.2, false);
             this.playerSprite.loadTexture('atackplayer');
             this.atackAnimation = this.playerSprite.animations.add('atackplayer');
@@ -118,9 +118,7 @@ module Tsukthemall{
                 this.isred = false;
                 this.isgreen = false;
                 this.isblue = false;
-            }, 800);
-                       
-           ;            
+            }, 800);       
 
         },this);
 
@@ -139,7 +137,7 @@ module Tsukthemall{
                 this.laserSprite.tint = this.blue;
             }
             this.isAtacking = true;
-            this.dogatack.play('', 0, 0.4, false);
+            this.dogatack.play('', 0, 0.7, false);
             this.laserAudio.play('', 0, 0.2, false);
             this.playerSprite.loadTexture('atackplayer');
             this.atackAnimation = this.playerSprite.animations.add('atackplayer');
