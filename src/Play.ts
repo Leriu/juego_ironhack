@@ -1,9 +1,4 @@
-<<<<<<< HEAD
  var puntos: any = 0;
-=======
-var puntos: any = 0;
-
->>>>>>> 5497b1f7cfdf4bf78bed09229d496b960708ebc4
 module Tsukthemall {
 
     export class Play extends Phaser.State {
@@ -17,10 +12,6 @@ module Tsukthemall {
         enemieGroup: Phaser.Group;
         playerGroup: Phaser.Group;
         score: Phaser.BitmapText;
-<<<<<<< HEAD
-=======
-        
->>>>>>> 5497b1f7cfdf4bf78bed09229d496b960708ebc4
         catDead: any;
         fondo: any;
         isPause: Boolean = false;
@@ -113,11 +104,7 @@ module Tsukthemall {
                                 enemie.enemiesSprite.tint = randomcolor;
                                 enemie.colorEnemie = randomcolor;
                                 enemie.enemiesSprite.revive();
-<<<<<<< HEAD
                             }, this.getRandomInt(5,20)*1000);
-=======
-                            }, this.getRandomInt(2,10)*1000);
->>>>>>> 5497b1f7cfdf4bf78bed09229d496b960708ebc4
                         }
                     }
                 });
