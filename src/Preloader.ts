@@ -29,6 +29,8 @@ module Tsukthemall {
             this.load.audio('dogatack', ['assets/dogatack.mp3', 'assets/dogatac.ogg'], false);
             this.load.audio('laser', ['assets/laser.mp3', 'assets/laser.ogg'], false);
             this.load.audio('fondo', 'assets/fondo.mp3', true);
+            this.load.spritesheet('botonPause', 'assets/pause.png',100, 100, 2);
+            //this.load.image('botonPlay', 'assets/botonPlay.png');
         }
 
         create() {

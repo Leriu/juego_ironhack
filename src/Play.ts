@@ -14,7 +14,8 @@ module Tsukthemall {
         score: Phaser.BitmapText;
         catDead: any;
         fondo: any;
-
+        isPause: Boolean = false;
+        botonPause: Phaser.Button;
 
         create() {
             this.fondo = this.game.add.audio('fondo');
@@ -27,7 +28,10 @@ module Tsukthemall {
             this.background.scale.set(this.viewportWidth/this.background.width, this.viewportHeight/this.background.height);
             this.add.tween(this.background).to({ alpha: 1}, 2000, Phaser.Easing.Bounce.InOut, true);
             //this.enemie = new Enemies(this.game, this.viewportWidth-400, this.viewportHeight-350, 0x606060);
-            
+            /*this.botonPause = this.game.add.button(this.viewportWidth-150, 50, 'botonPause',()=>{
+                this.isPause = true;
+            },this,0,0,1);
+            */
             this.enemieGroup = this.game.add.group();
         
             for(let i=0; i < 18; i++ ){
@@ -37,7 +41,7 @@ module Tsukthemall {
                     this.enemieGroup.add(newEnemie.enemiesSprite);
                     this.groupenemies.push(newEnemie);
                     
-                }, this.getRandomInt(2,8)*1000);
+                }, this.getRandomInt(5,20)*1000);
             }
             this.player = new Player(this.game, 70, this.viewportHeight-560);
             this.playerGroup = this.game.add.group();
@@ -58,6 +62,9 @@ module Tsukthemall {
         }
 
         update() {
+            /* if(this.isPause){
+                return
+            } */
             this.player.update();
             //this.enemie.update();
            
@@ -97,13 +104,14 @@ module Tsukthemall {
                                 enemie.enemiesSprite.tint = randomcolor;
                                 enemie.colorEnemie = randomcolor;
                                 enemie.enemiesSprite.revive();
-                            }, this.getRandomInt(3,7)*1000);
+                            }, this.getRandomInt(5,20)*1000);
                         }
                     }
                 });
                 
             }
         }
+
     }
 
 }
