@@ -89,17 +89,15 @@ var Tsukthemall;
             this.texto.anchor.set(0.5);
             this.texto.align = 'center';
             this.texto.fontSize = 50;
-            this.yourScore = this.game.add.bitmapText(this.viewportWidth / 2, this.viewportHeight / 2, "font_bold", "Your score is: " + puntos);
+            this.yourScore = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY, "font_bold", "Your score is: " + puntos);
             this.yourScore.alpha = 1;
             this.yourScore.anchor.set(0.5);
             this.yourScore.fontSize = 40;
-            this.add.tween(this.yourScore).to({ alpha: 1 }, 2000, Phaser.Easing.Bounce.InOut, true);
-            this.playagain = this.game.add.bitmapText(this.viewportWidth / 2, (this.viewportHeight / 2) + 200, "font_bold", "PRESIONA [ ESPACIO ] PARA JUGAR DE NUEVO");
+            this.playagain = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY + 200, "font_bold", "PRESIONA [ ESPACIO ] PARA JUGAR DE NUEVO");
             this.playagain.alpha = 1;
             this.playagain.anchor.set(0.5);
             this.playagain.align = 'center';
             this.playagain.fontSize = 30;
-            this.add.tween(this.playagain).to({ alpha: 1 }, 2000, Phaser.Easing.Bounce.InOut, true);
             this.spacePress = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
             this.spacePress.onDown.addOnce(this.startGame, this);
         };
@@ -124,7 +122,7 @@ var Tsukthemall;
         };
         GameOver.prototype.startGame = function () {
             puntos = 0;
-            this.game.state.start('Play', true, false);
+            this.game.state.start('Menu', true, false);
         };
         return GameOver;
     }(Phaser.State));
@@ -196,6 +194,7 @@ var Tsukthemall;
             _this.viewportWidth = window.innerWidth;
             _this.groupenemies = new Array();
             _this.colorArray = [0xB30000, 0x1A9846, 0x005F9C, 0xFF0000, 0x23EA68, 0x009BFF];
+            _this.isPause = false;
             return _this;
         }
         Play.prototype.create = function () {
@@ -215,7 +214,7 @@ var Tsukthemall;
                     var newEnemie = new Tsukthemall.Enemies(_this.game, _this.viewportWidth - 400, _this.viewportHeight - 520, _this.colorArray[_this.getRandomInt(0, _this.colorArray.length - 1)]);
                     _this.enemieGroup.add(newEnemie.enemiesSprite);
                     _this.groupenemies.push(newEnemie);
-                }, this.getRandomInt(3, 10) * 1000);
+                }, this.getRandomInt(5, 20) * 1000);
             }
             this.player = new Tsukthemall.Player(this.game, 70, this.viewportHeight - 560);
             this.playerGroup = this.game.add.group();
@@ -247,6 +246,7 @@ var Tsukthemall;
             while (id--) {
                 window.clearTimeout(id);
             }
+            this.groupenemies = new Array();
             this.game.state.start('GameOver', true, false);
         };
         Play.prototype.killenemie = function () {
@@ -264,7 +264,7 @@ var Tsukthemall;
                                 enemie.enemiesSprite.tint = randomcolor;
                                 enemie.colorEnemie = randomcolor;
                                 enemie.enemiesSprite.revive();
-                            }, _this.getRandomInt(2, 10) * 1000);
+                            }, _this.getRandomInt(5, 20) * 1000);
                         }
                     }
                 });
@@ -443,6 +443,7 @@ var Tsukthemall;
             this.load.audio('dogatack', ['assets/dogatack.mp3', 'assets/dogatac.ogg'], false);
             this.load.audio('laser', ['assets/laser.mp3', 'assets/laser.ogg'], false);
             this.load.audio('fondo', 'assets/fondo.mp3', true);
+            this.load.spritesheet('botonPause', 'assets/pause.png', 100, 100, 2);
         };
         Preloader.prototype.create = function () {
             var tween = this.add.tween(this.preloadBar).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
