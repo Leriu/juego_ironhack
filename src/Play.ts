@@ -71,7 +71,7 @@ module Tsukthemall {
             this.groupenemies.forEach((enemie)=>{
                 this.game.physics.arcade.collide(this.player.playerSprite,enemie.enemiesSprite,this.gameOver,null,this);
                 this.game.physics.arcade.collide(this.player.laserSprite,enemie.enemiesSprite,this.killenemie,null,this);
-                
+
                 enemie.update();
             });
             this.score.text = 'Score: ' + puntos;
@@ -87,7 +87,7 @@ module Tsukthemall {
             }
             this.groupenemies = new Array<Enemies>();
             this.game.state.start('GameOver', true, false);
-        }
+        } 
         killenemie(){
             
             if(this.player.isAtacking){
