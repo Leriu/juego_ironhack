@@ -24,10 +24,12 @@ module Tsukthemall {
             this.position.y = y;
             //game.add.existing(this);
             //game.debug.body(this.enemiesSprite);
+           
             this.create();
          }
 
          update(){
+             
              this.enemiesSprite.body.velocity.x = -100;
              //this.game.debug.body(this.enemiesSprite);
          }

@@ -1,3 +1,4 @@
+ var puntos: any = 0;
 module Tsukthemall {
 
     export class Play extends Phaser.State {
@@ -11,7 +12,6 @@ module Tsukthemall {
         enemieGroup: Phaser.Group;
         playerGroup: Phaser.Group;
         score: Phaser.BitmapText;
-        puntos: any = 0;
         catDead: any;
         fondo: any;
 
@@ -30,14 +30,14 @@ module Tsukthemall {
             
             this.enemieGroup = this.game.add.group();
         
-            for(let i=0; i < 10; i++ ){
+            for(let i=0; i < 18; i++ ){
                 
                 setTimeout(()=>{
                     let newEnemie = new Enemies(this.game, this.viewportWidth-400, this.viewportHeight-520, this.colorArray[this.getRandomInt(0,this.colorArray.length-1)]);
                     this.enemieGroup.add(newEnemie.enemiesSprite);
                     this.groupenemies.push(newEnemie);
                     
-                }, this.getRandomInt(3,10)*1000);
+                }, this.getRandomInt(2,8)*1000);
             }
             this.player = new Player(this.game, 70, this.viewportHeight-560);
             this.playerGroup = this.game.add.group();
@@ -45,7 +45,7 @@ module Tsukthemall {
             let laserGroup = this.game.add.group();
             laserGroup.add(this.player.laserSprite);
             //this.game.world.swap(this.player.playerSprite, this.player.laserSprite);
-            this.score = this.game.add.bitmapText(this.viewportWidth/2, 50, "font_bold", "Score: " + this.puntos);
+            this.score = this.game.add.bitmapText(this.viewportWidth/2, 50, "font_bold", "Score: " + puntos);
             this.score.fontSize = 30;
             this.score.alpha = 1;
             this.score.anchor.set(0.5);
@@ -67,7 +67,7 @@ module Tsukthemall {
 
                 enemie.update();
             });
-            this.score.text = 'Score: ' + this.puntos;
+            this.score.text = 'Score: ' + puntos;
             
 
         }
@@ -78,6 +78,7 @@ module Tsukthemall {
             while(id--){
                 window.clearTimeout(id);
             }
+            this.groupenemies = new Array<Enemies>();
             this.game.state.start('GameOver', true, false);
         }
         killenemie(){
@@ -87,7 +88,7 @@ module Tsukthemall {
                     if(enemie.colorEnemie == this.player.colorPlayer){  
                         if(enemie.enemiesSprite.alive){
                             enemie.enemiesSprite.kill();
-                            this.puntos+= 10;
+                            puntos+= 10;
                             this.catDead.play('', 0, 0.2, false);
                             //reutilizamos el enemigo
                             enemie.enemiesSprite.position.set(this.viewportWidth-400, this.viewportHeight-520);
@@ -96,10 +97,9 @@ module Tsukthemall {
                                 enemie.enemiesSprite.tint = randomcolor;
                                 enemie.colorEnemie = randomcolor;
                                 enemie.enemiesSprite.revive();
-                            }, this.getRandomInt(5,10)*1000);
+                            }, this.getRandomInt(3,7)*1000);
                         }
                     }
-                    
                 });
                 
             }
