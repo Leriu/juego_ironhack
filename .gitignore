@@ -3,5 +3,4 @@ node_modules/
 *.txt
 .DS_Store
 ._*
-build/
-bin/*
+build/*
