@@ -89,15 +89,17 @@ var Tsukthemall;
             this.texto.anchor.set(0.5);
             this.texto.align = 'center';
             this.texto.fontSize = 50;
-            this.yourScore = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY, "font_bold", "Your score is: " + puntos);
+            this.yourScore = this.game.add.bitmapText(this.viewportWidth / 2, this.viewportHeight / 2, "font_bold", "Your score is: " + puntos);
             this.yourScore.alpha = 1;
             this.yourScore.anchor.set(0.5);
             this.yourScore.fontSize = 40;
-            this.playagain = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY + 200, "font_bold", "PRESIONA [ ESPACIO ] PARA JUGAR DE NUEVO");
+            this.add.tween(this.yourScore).to({ alpha: 1 }, 2000, Phaser.Easing.Bounce.InOut, true);
+            this.playagain = this.game.add.bitmapText(this.viewportWidth / 2, (this.viewportHeight / 2) + 200, "font_bold", "PRESIONA [ ESPACIO ] PARA JUGAR DE NUEVO");
             this.playagain.alpha = 1;
             this.playagain.anchor.set(0.5);
             this.playagain.align = 'center';
             this.playagain.fontSize = 30;
+            this.add.tween(this.playagain).to({ alpha: 1 }, 2000, Phaser.Easing.Bounce.InOut, true);
             this.spacePress = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
             this.spacePress.onDown.addOnce(this.startGame, this);
         };
@@ -122,7 +124,7 @@ var Tsukthemall;
         };
         GameOver.prototype.startGame = function () {
             puntos = 0;
-            this.game.state.start('Menu', true, false);
+            this.game.state.start('Play', true, false);
         };
         return GameOver;
     }(Phaser.State));
@@ -213,7 +215,7 @@ var Tsukthemall;
                     var newEnemie = new Tsukthemall.Enemies(_this.game, _this.viewportWidth - 400, _this.viewportHeight - 520, _this.colorArray[_this.getRandomInt(0, _this.colorArray.length - 1)]);
                     _this.enemieGroup.add(newEnemie.enemiesSprite);
                     _this.groupenemies.push(newEnemie);
-                }, this.getRandomInt(2, 8) * 1000);
+                }, this.getRandomInt(3, 10) * 1000);
             }
             this.player = new Tsukthemall.Player(this.game, 70, this.viewportHeight - 560);
             this.playerGroup = this.game.add.group();
@@ -245,7 +247,6 @@ var Tsukthemall;
             while (id--) {
                 window.clearTimeout(id);
             }
-            this.groupenemies = new Array();
             this.game.state.start('GameOver', true, false);
         };
         Play.prototype.killenemie = function () {
@@ -263,11 +264,11 @@ var Tsukthemall;
                                 enemie.enemiesSprite.tint = randomcolor;
                                 enemie.colorEnemie = randomcolor;
                                 enemie.enemiesSprite.revive();
-                            }, _this.getRandomInt(3, 7) * 1000);
+                            }, _this.getRandomInt(2, 10) * 1000);
                         }
                     }
                 });
-            } 
+            }
         };
         return Play;
     }(Phaser.State));
@@ -344,7 +345,7 @@ var Tsukthemall;
                     _this.laserSprite.tint = _this.dblue;
                 }
                 _this.isAtacking = true;
-                _this.dogatack.play('', 0, 0.4, false);
+                _this.dogatack.play('', 0, 0.7, false);
                 _this.laserAudio.play('', 0, 0.2, false);
                 _this.playerSprite.loadTexture('atackplayer');
                 _this.atackAnimation = _this.playerSprite.animations.add('atackplayer');
@@ -365,7 +366,6 @@ var Tsukthemall;
                     _this.isgreen = false;
                     _this.isblue = false;
                 }, 800);
-                ;
             }, this);
             var botonbright = this.game.add.button((this.viewportWidth / 2) + 400, this.viewportHeight - 150, 'botonbright', function () {
                 if (_this.isred) {
@@ -384,7 +384,7 @@ var Tsukthemall;
                     _this.laserSprite.tint = _this.blue;
                 }
                 _this.isAtacking = true;
-                _this.dogatack.play('', 0, 0.4, false);
+                _this.dogatack.play('', 0, 0.7, false);
                 _this.laserAudio.play('', 0, 0.2, false);
                 _this.playerSprite.loadTexture('atackplayer');
                 _this.atackAnimation = _this.playerSprite.animations.add('atackplayer');
