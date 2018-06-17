@@ -39,7 +39,7 @@ module Tsukthemall {
                     this.enemieGroup.add(newEnemie.enemiesSprite);
                     this.groupenemies.push(newEnemie);
                     
-                }, this.getRandomInt(3,7)*1000);
+                }, this.getRandomInt(3,10)*1000);
             }
             this.player = new Player(this.game, 70, this.viewportHeight-560);
             this.playerGroup = this.game.add.group();
@@ -98,12 +98,12 @@ module Tsukthemall {
                                 enemie.enemiesSprite.tint = randomcolor;
                                 enemie.colorEnemie = randomcolor;
                                 enemie.enemiesSprite.revive();
-                            }, this.getRandomInt(2,8)*1000);
+                            }, this.getRandomInt(2,10)*1000);
                         }
                     }
                     
                 });
-                
+
                 
             }
         }
