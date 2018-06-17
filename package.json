@@ -1,5 +1,5 @@
 {
-  "name": "yourgame",
+  "name": "tsukthemall",
   "version": "1.0.0",
   "description": "juego",
   "main": "Gruntfile.js",
@@ -19,6 +19,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "you",
+  "author": "Uriel Camargo Fierro",
   "license": "ISC"
 }
